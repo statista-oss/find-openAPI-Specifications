@@ -10,12 +10,16 @@ inputs:
   search-dir:
     description: 'Directory to search'
     required: false
+  head-only:
+    description: 'Searches only within HEAD and not the entire repo'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.repository }}
     - ${{ inputs.search-dir }}
+    - ${{ inputs.head-only }}
 outputs:
   spec_files:
     value: ${{ steps.find-specs.outputs.spec_files }}
