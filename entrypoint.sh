@@ -43,6 +43,9 @@ else
 
   git diff-tree --no-commit-id --name-only HEAD -r > changeset.txt
 
+  echo "Found files in HEAD"
+  cat changeset.txt
+
   while IFS="" read -r p || [ -n "$p" ]
   do
     if [[ $p == *.yaml ]] || [[ $p == *.yml ]] || [[ $p == *.json ]]; then
