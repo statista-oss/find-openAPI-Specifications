@@ -46,9 +46,9 @@ if [ -z "$search_head_only" ]; then
 else
 
   echo "Searching only in HEAD"
-  echo "diff-tree --no-commit-id --name-only HEAD -r -- > changeset.txt"
+  echo "git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | xargs > changeset.txt"
 
-  git diff-tree --no-commit-id --name-only HEAD -r -- > changeset.txt
+  git diff-tree --no-commit-id --name-only -r "${{ github.sha }}" | xargs > changeset.txt
 
   echo "Found files in HEAD"
   cat changeset.txt
