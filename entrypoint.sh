@@ -67,4 +67,7 @@ else
 
 fi
 
+echo "List of valid spec files ⤵️"
+echo "$spec_files"
+
 echo "spec_files=$spec_files" >> "$GITHUB_OUTPUT"
