@@ -4,6 +4,8 @@ repository=$1
 search_dir=$2
 search_head_only=$3
 
+git config --global --add safe.directory /github/workspace
+
 # Go to the repository root or the specified directory
 if [ -z "$repository" ]; then
   if [ -z "$search_dir" ]; then
