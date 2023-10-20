@@ -27,6 +27,9 @@ else
   fi
 fi
 
+echo "LS'ing contents"
+ls -R
+
 if [ -z "$search_head_only" ]; then
 
   echo "Searching in whole repo"
