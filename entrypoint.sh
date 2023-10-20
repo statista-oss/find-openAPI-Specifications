@@ -30,6 +30,9 @@ fi
 echo "LS'ing contents"
 ls -R
 
+echo "git rev-parse --short HEAD"
+git rev-parse --short HEAD
+
 if [ -z "$search_head_only" ]; then
 
   echo "Searching in whole repo"
