@@ -50,8 +50,8 @@ else
 
   (git diff-tree --no-commit-id --name-only -r HEAD | xargs) > changeset.txt
 
-  echo "Found files in HEAD"
-  cat changeset.txt
+  echo "LS'ing contents"
+  ls -R
 
   while IFS="" read -r p || [ -n "$p" ]
   do
