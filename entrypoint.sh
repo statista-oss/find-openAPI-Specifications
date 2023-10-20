@@ -9,11 +9,14 @@ git config --global --add safe.directory /github/workspace
 # Go to the repository root or the specified directory
 if [ -z "$repository" ]; then
   if [ -z "$search_dir" ]; then
+    echo "CD'ing into $GITHUB_WORKSPACE"
     cd "$GITHUB_WORKSPACE" || exit
   else
+    echo "CD'ing into $GITHUB_WORKSPACE/$search_dir"
     cd "$GITHUB_WORKSPACE/$search_dir" || exit
   fi
 else
+  echo "Using custom repo $repository"
   # Clone the repository
   git clone "$repository" /tmp/repo
 
@@ -26,6 +29,8 @@ fi
 
 if [ -z "$search_head_only" ]; then
 
+  echo "Searching in whole repo"
+
   # Search for OpenAPI 3.x.x specifications
   spec_files=$(find . -type f \( -name "*.yaml" -o -name "*.yml" -o -name "*.json" \) -print0 | xargs -0 grep -l "openapi: 3")
 
@@ -33,6 +38,8 @@ if [ -z "$search_head_only" ]; then
   spec_files+=$(find . -type f \( -name "*.yaml" -o -name "*.yml" -o -name "*.json" \) -print0 | xargs -0 grep -l "swagger: \"2.0\"")
 
 else
+
+  echo "Searching only in HEAD"
 
   git diff-tree --no-commit-id --name-only HEAD -r > changeset.txt
 
@@ -50,4 +57,4 @@ else
 
 fi
 
-echo "::set-output name=spec_files::$spec_files"
+echo "spec_files=$spec_files" >> "$GITHUB_OUTPUT"
