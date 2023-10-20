@@ -58,7 +58,7 @@ else
     if [[ $p == *.yaml ]] || [[ $p == *.yml ]] || [[ $p == *.json ]]; then
 
       # shellcheck disable=SC2143
-      if [[ $(grep -E -q 'openapi: 3|swagger: \"2.0\"' "$p") ]]; then
+      if [[ $(grep -E -q 'openapi: 3|swagger:' "$p") ]]; then
         spec_files+=$p
       fi
 
